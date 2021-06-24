@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
@@ -18,7 +19,7 @@ namespace TelegramBot.Classes
 {
     class BotClass
     {
-        const string TOKEN = "TOKEN";
+        readonly string TOKEN;
         HttpClient httpClient;
         Root rt;
         IDbHelper IDbHelper;
@@ -46,6 +47,7 @@ namespace TelegramBot.Classes
 
         public BotClass(IDbHelper _IDbHelper) 
         {
+            this.TOKEN = ConfigurationManager.AppSettings["TelegramApiToken"];
             this.IDbHelper = _IDbHelper;
             httpClient = new HttpClient();
             rt = new Root();
